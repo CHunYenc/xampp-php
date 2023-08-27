@@ -1,12 +1,7 @@
 <?php
+// 使用 Dotenv 套件
+require_once realpath(__DIR__ . '/vendor/autoload.php');
 
-// load .env file
-$dotenv = __DIR__ . '/.env';
-$envLines = file($dotenv, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-$envData = [];
-foreach ($envLines as $line) {
-    // 解析每一行，以等号（=）分隔键和值
-    list($key, $value) = explode('=', $line, 2);
-    $envData[$key] = $value;
-    echo $key . ' ' . $value . '<br />';
-}
+// 載入 .env 環境變數
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
